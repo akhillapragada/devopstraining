@@ -1,0 +1,13 @@
+name: Branch Filter Workflow
+
+on:
+  push:
+    branches:
+      - main    # This workflow will only run when code is pushed to the main branch
+
+jobs:
+  test-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo current branch
+        run: echo "Running on branch: ${{ github.ref }}"
