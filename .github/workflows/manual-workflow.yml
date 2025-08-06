@@ -1,25 +1,24 @@
 name: manual workflow
 
-
-
-
 on: 
- workflow_dispatch
- 
+  workflow_dispatch
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Print build
         run: echo 'build'
+
   test:
     runs-on: windows-latest
     steps:
-      - name: Print test – chrome
+      - name: Print test - chrome
         run: echo 'test - chrome'
-      - name: Print test – edge
+
+      - name: Print test - edge
         run: echo 'test - edge'
-       
+
   deploy:
     runs-on: ubuntu-latest
     steps:
