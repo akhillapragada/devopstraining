@@ -3,11 +3,17 @@ name: Branch Filter Workflow
 on:
   push:
     branches:
-      - main  # Only runs when code is pushed to main
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # <-- This allows manual trigger
 
 jobs:
   test-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo current branch
-        run: echo "Running on branch:${{ github.ref }}"
+      - name: Echo event and branch
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Branch or Tag: ${{ github.ref }}"
