@@ -1,41 +1,33 @@
-name: Pull_request1 workflow
- 
- 
-on: pull_request
- 
+name: Pull Request Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps: 
-
       - name: Print build
-
         run: echo 'build'
 
   test:
-
     runs-on: windows-latest
-
     steps:
-
       - name: Print test - chrome
-
         run: echo 'test - chrome'
-
       - name: Print test - edge
-
         run: echo 'test - edge'
- 
+
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Print deploy
-
         run: echo 'deploy'
- 
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy
+        run: echo 'deploy'
