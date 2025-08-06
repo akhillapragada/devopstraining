@@ -3,7 +3,7 @@ name: Branch Filter Workflow
 on:
   push:
     branches:
-      - main    # This workflow will only run when code is pushed to the main branch
+      - main  # Only trigger on pushes to main branch
 
 jobs:
   test-branch:
