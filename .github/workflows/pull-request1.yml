@@ -4,17 +4,31 @@ on:
   pull_request:
     branches:
       - main
-      - feature-branch-1
+    paths:
+      - 'src/**'
+    types: [opened, synchronize]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Print build
+        run: echo 'Running build on PR to main branch for src/ changes'
 
-      - name: Run PR test
-        run: echo "Running test on PR from feature branch"
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Print test - chrome
+        run: echo 'Running Chrome tests'
+      - name: Print test - edge
+        run: echo 'Running Edge tests'
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
       - name: Print deploy
-        run: echo 'deploy'
+        run: echo 'Deploying from main branch pull request'
